@@ -1,15 +1,35 @@
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.size
+        var most = Int.MIN_VALUE;
+        var currentCals = 0;
+        for(cal in input) {
+            if(cal.isEmpty()) {
+                most = currentCals.coerceAtLeast(most);
+                currentCals = 0;
+            } else {
+                currentCals += Integer.parseInt(cal);
+            }
+        }
+        return most;
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
-    }
+        var topThree = mutableListOf(0,0,0);
+        var currentCals = 0;
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+        for(cal in input) {
+            if(cal.isEmpty()) {
+                if(currentCals > topThree[0]) {
+                    topThree[0] = currentCals;
+                    topThree.sort();
+                }
+                currentCals = 0;
+            } else {
+                currentCals += Integer.parseInt(cal);
+            }
+        }
+        return topThree.sum();
+    }
 
     val input = readInput("Day01")
     println(part1(input))
