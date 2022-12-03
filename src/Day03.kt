@@ -25,8 +25,8 @@ fun main() {
         var total = 0
 
         for(sack in input) {
-            val componentOne = sack.substring(0, sack.length / 2).toCharArray()
-            val componentTwo = sack.substring(sack.length / 2).toCharArray()
+            val componentOne = sack.substring(0, sack.length / 2).toCharArray().toSet()
+            val componentTwo = sack.substring(sack.length / 2).toCharArray().toSet()
 
             for(letter in componentOne) {
                 if(componentTwo.contains(letter)) {
