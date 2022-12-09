@@ -1,7 +1,7 @@
 import java.lang.IllegalArgumentException
 
 fun main() {
-    fun indexOfNLengthUniqueSubstring(input: CharArray, n: Int): Int {
+    fun indexOfNLengthUniqueSubstring(input: Set<Char>, n: Int): Int {
         var count = 0
         var sub = ""
         input.map { letter ->
@@ -25,11 +25,11 @@ fun main() {
     }
 
     fun part1(input: List<String>): Int {
-        return  indexOfNLengthUniqueSubstring(input[0].toCharArray(), 4)
+        return  indexOfNLengthUniqueSubstring(input[0].toCharArray().toSet(), 4)
     }
 
     fun part2(input: List<String>): Int {
-        return  indexOfNLengthUniqueSubstring(input[0].toCharArray(), 14)
+        return  indexOfNLengthUniqueSubstring(input[0].toCharArray().toSet(), 14)
     }
 
     val input = readInput("Day06")
