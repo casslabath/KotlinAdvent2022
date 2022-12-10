@@ -45,15 +45,17 @@ fun main() {
     }
 
     fun part1And2(input: List<String>): Pair<Int, Int> {
-        var maxScenicScore = 0
         val width = input[0].length
         val height = input.size
         var visibleTrees = 0
+        var maxScenicScore = 0
+
         for(y in 0 until width) {
             for(x in 0 until height) {
                 val treeHeight = input[x][y].code
 
-                // a list of pairs representing if the tree is visible and its scenic score
+                // a list of pairs representing if the tree is visible
+                // and its number of visible trees
                 val treeVisibilities: List<Pair<Boolean, Int>> = Direction.values().map {
                     treeVisibleInDir(input,x,y,treeHeight,it)
                 }
@@ -63,8 +65,12 @@ fun main() {
                     visibleTrees++
                 }
 
-                // update max scenic score if tree has greatest score
-                maxScenicScore = maxScenicScore.coerceAtLeast(treeVisibilities.map { it.second }.reduce { acc, i ->  acc * i})
+                // update max scenic score
+                maxScenicScore = maxScenicScore.coerceAtLeast(
+                    // calculate the scenic score by multiplying each
+                    // direction's visible trees
+                    treeVisibilities.map { it.second }.reduce { acc, i ->  acc * i}
+                )
             }
         }
         return visibleTrees to maxScenicScore
