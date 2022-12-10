@@ -48,7 +48,7 @@ fun main() {
         return this.first
     }
 
-    fun Pair<Boolean, Int>.getVisibileTrees(): Int {
+    fun Pair<Boolean, Int>.getVisibleTrees(): Int {
         return this.second
     }
 
@@ -77,7 +77,7 @@ fun main() {
                 maxScenicScore = maxScenicScore.coerceAtLeast(
                     // calculate the scenic score by multiplying each
                     // direction's visible trees
-                    treeVisibilities.map { it.getVisibileTrees() }.reduce { acc, i ->  acc * i}
+                    treeVisibilities.map { it.getVisibleTrees() }.reduce { acc, i ->  acc * i}
                 )
             }
         }
