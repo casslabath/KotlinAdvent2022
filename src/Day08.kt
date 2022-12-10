@@ -44,6 +44,14 @@ fun main() {
         }
     }
 
+    fun Pair<Boolean, Int>.getVisibility(): Boolean {
+        return this.first
+    }
+
+    fun Pair<Boolean, Int>.getVisibileTrees(): Int {
+        return this.second
+    }
+
     fun part1And2(input: List<String>): Pair<Int, Int> {
         val width = input[0].length
         val height = input.size
@@ -61,7 +69,7 @@ fun main() {
                 }
 
                 // check if tree is visible in any direction
-                if(treeVisibilities.any{it.first}) {
+                if(treeVisibilities.any{it.getVisibility()}) {
                     visibleTrees++
                 }
 
@@ -69,7 +77,7 @@ fun main() {
                 maxScenicScore = maxScenicScore.coerceAtLeast(
                     // calculate the scenic score by multiplying each
                     // direction's visible trees
-                    treeVisibilities.map { it.second }.reduce { acc, i ->  acc * i}
+                    treeVisibilities.map { it.getVisibileTrees() }.reduce { acc, i ->  acc * i}
                 )
             }
         }
