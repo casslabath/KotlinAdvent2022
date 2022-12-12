@@ -15,6 +15,9 @@ fun main() {
             val (dir, distStr) = it.split(" ")
             val dist = distStr.toInt()
             for(i in 0 until dist) {
+                val currX = hX
+                val currY = hY
+
                 when (dir) {
                     "U"-> {
                         hY += 1
@@ -29,38 +32,10 @@ fun main() {
                     }
                 }
 
-                val xDist = hX - tX
-                val yDist = hY - tY
-
-                if (abs(xDist) > 1) {
-                    if (xDist < 0) {
-                        tX--
-                    } else {
-                        tX++
-                    }
-
-                    if(abs(yDist) == 1) {
-                        if (yDist < 0) {
-                            tY--
-                        } else {
-                            tY++
-                        }
-                    }
-                }
-                if (abs(yDist) > 1) {
-                    if (yDist < 0) {
-                        tY--
-                    } else {
-                        tY++
-                    }
-
-                    if(abs(xDist) == 1) {
-                        if (xDist < 0) {
-                            tX--
-                        } else {
-                            tX++
-                        }
-                    }
+                // T replaces where H was if H gets 2 spots away from T
+                if(abs(hX-tX) + abs(hY-tY) > 2 || abs(hX-tX) == 2 || abs(hY-tY) == 2 ) {
+                    tX = currX
+                    tY = currY
                 }
 
                 visitedCoords.add(tX to tY)
